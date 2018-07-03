@@ -1,0 +1,62 @@
+.jumbotron {
+  background-image:url('/img/bnr.jpg');
+  height:500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0%;
+}
+.col-md-3 {
+  padding-right: 0%;
+  padding-left: 0%;
+}
+
+/*custom animation for the cards*/
+.card {
+  transition: transform .2s; /* Animation */
+}
+.card:hover {
+  transform: scale(1.05);
+}
+
+/*custom color for nav link*/
+.nav-link{
+  color: #fff;
+}
+
+
+.logo{
+  background-image:url('/img/logo-o.png');
+  background-size: cover;
+  float: left;
+  margin: 0 10px;
+  height: 40px;
+  width: 40px;
+}
+
+.lg-txt {
+  line-height: 1.3rem;
+}
+
+.jumb-title {
+  color: #fff;
+  text-align: center;
+  width: 100%;
+}
+
+/*hide the orange dot*/
+
+@media (min-width: 768px){
+  .dot {
+    font-size: 15px;
+    color: rgb(255, 145, 0);
+    display: block;
+    padding: .5rem 1rem;
+    pointer-events:none;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .dot-hide{
+    display: none;
+  }
+}
+
