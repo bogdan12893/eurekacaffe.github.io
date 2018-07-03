@@ -1,5 +1,5 @@
 .jumbotron {
-  background-image:url('/img/bnr.jpg');
+  background-image:url('../img/bnr.jpg');
   height:500px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -25,7 +25,7 @@
 
 
 .logo{
-  background-image:url('/img/logo-o.png');
+  background-image:url('../img/logo-o.png');
   background-size: cover;
   float: left;
   margin: 0 10px;
