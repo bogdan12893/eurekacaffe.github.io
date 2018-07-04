@@ -4,6 +4,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 0%;
+  margin-bottom: 0%;
 }
 .col-md-3 {
   padding-right: 0%;
@@ -20,10 +21,20 @@
 }
 
 /*custom color for nav link*/
-.nav-link{
-  color: #fff;
+
+
+a, .nav-link{
+  color: rgb(0, 0, 0);
 }
 
+a, .nav-link:hover {
+  color: rgb(255, 145, 0);
+}
+
+.arrow {
+  color: rgb(255, 145, 0);
+  font-size: 16px;
+}
 
 .logo{
   background-image:url('../img/logo-o.png');
@@ -61,3 +72,20 @@
   }
 }
 
+.filter-bar {
+  background-color: rgb(224, 224, 224);
+  padding: 10px;
+  color: #000;
+  flex-direction: column;
+  margin-bottom: 3em;
+}
+
+#slider {
+  margin: 0.9em;
+}
+
+.price {
+  margin: 0.9em;
+  color: rgb(95, 95, 95);
+  font-size: 13px;
+}
