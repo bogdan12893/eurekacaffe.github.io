@@ -73,29 +73,32 @@ $(document).ready(function(){
         }
     ];
 
-    //price range for food
+    ///saving the data to localstorage
+    let foodsArr = JSON.stringify(foods);
+    let foodsLs = localStorage.setItem("savedFoods", foodsArr);
+    let foodsObj = JSON.parse(foodsArr);
 
-    $('#slider').slider({
-        max: 40,
+    //price range for food
+    $('#flat-slider').slider({
+        max: 30,
         range: true,
-        values: [5, 30],
+        values: [5, 20],
         change: function(e, ui){
             getFoods(ui.values[0], ui.values[1]);
         }
     });
 
-    let current = $('#slider').slider("option", "values");
+    let current = $('#flat-slider').slider("option", "values");
 
     getFoods(current[0], current[1]);
-    getFoodsLs();
+
     function getFoods(min, max){
         $('#rangeMin').text(`$${min}`);
         $('#rangeMax').text(`$${max}`);
 
         //if condition pass the card will display in foodResult
         let foodResult ='';
-
-        foods.map((food)=>{
+        let checkFoodPrice = foods.map((food)=>{
             if(food.price >= min && food.price <= max){
                 //creating the card
                 foodResult += `
@@ -104,7 +107,7 @@ $(document).ready(function(){
                        <img class="card-img-top" src="${food.photo}">
                        <div class="card-body">
                            <h5 class="card-title text-center">${food.name}</h5>
-                           <p class="card-text text-center">${food.category}</p>
+                           <h6 class="text-center">${food.category}</h6>
                            <p class="card-text text-center">$${food.price}</p>
                        </div>
                    </div>
@@ -114,11 +117,6 @@ $(document).ready(function(){
         }).join('');
 
         $("#food-card").html(foodResult);
-
-        ///saving the data to localstorage
-        let foodsArr = JSON.stringify(foods);
-        localStorage.setItem("savedFoods", foodsArr);
-        let foodsObj = JSON.parse(foodsArr);
     }
 });
 

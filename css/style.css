@@ -25,15 +25,31 @@
 
 a, .nav-link{
   color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 12px;
 }
 
 a, .nav-link:hover {
   color: rgb(255, 145, 0);
 }
 
+.card-text{
+  color: rgb(255, 145, 0);
+}
+
+h6 {
+  color: rgb(95, 95, 95);
+  font-weight: 100;
+}
+
 .arrow {
   color: rgb(255, 145, 0);
   font-size: 16px;
+}
+
+.im-centered{
+  margin: auto; 
+  max-width: 200px;
 }
 
 .logo{
@@ -78,10 +94,6 @@ a, .nav-link:hover {
   color: #000;
   flex-direction: column;
   margin-bottom: 3em;
-}
-
-#slider {
-  margin: 0.9em;
 }
 
 .price {
