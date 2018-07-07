@@ -75,7 +75,8 @@ $(document).ready(function(){
 
     ///saving the data to localstorage
     let foodsArr = JSON.stringify(foods);
-    let foodsLs = localStorage.setItem("savedFoods", foodsArr);
+    let foodsSet = localStorage.setItem("savedFoods", foodsArr);
+    foodsArr = localStorage.getItem("savedFoods");
     let foodsObj = JSON.parse(foodsArr);
 
     //price range for food
@@ -98,7 +99,7 @@ $(document).ready(function(){
 
         //if condition pass the card will display in foodResult
         let foodResult ='';
-        let checkFoodPrice = foods.map((food)=>{
+        let checkFoodPrice = foodsObj.map((food)=>{
             if(food.price >= min && food.price <= max){
                 //creating the card
                 foodResult += `
@@ -115,7 +116,7 @@ $(document).ready(function(){
                `;
             }
         }).join('');
-
+        
         $("#food-card").html(foodResult);
     }
 });
