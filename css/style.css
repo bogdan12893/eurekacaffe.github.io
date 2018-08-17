@@ -42,9 +42,9 @@ h6 {
   font-weight: 100;
 }
 
-.arrow {
+.fas, .fa-angle-down {
   color: rgb(255, 145, 0);
-  font-size: 16px;
+  font-size: 14 px;
 }
 
 .im-centered{
@@ -89,6 +89,7 @@ h6 {
 }
 
 .filter-bar {
+  position: relative;
   background-color: rgb(224, 224, 224);
   padding: 10px;
   color: #000;
@@ -100,4 +101,14 @@ h6 {
   margin: 0.9em;
   color: rgb(95, 95, 95);
   font-size: 13px;
+}
+
+.dropdown-menu {
+  background-color: rgb(255, 145, 0);
+  border: none;
+}
+.dropdown-item:hover {
+  background: rgb(255, 145, 0);
+  color: #fff;
+  
 }
