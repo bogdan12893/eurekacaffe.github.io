@@ -1,6 +1,5 @@
 $(document).ready(function(){
-    
-    const foods = [
+   /*const foods = [
         {
             id: 0,
             name: "Chicken Manchurian",
@@ -71,13 +70,49 @@ $(document).ready(function(){
             price: 8.99,
             photo: "https://d2e147lbltb8cj.cloudfront.net/r/i/2cf3915d-9e8f-44d1-9335-eed2cf943285_10x_299_195_75"
         }
-    ];
+   ];*/
+    //Add foods
+    //empty array where the foods will be stored
+    let foods = [];
 
-    ///saving the data to localstorage
+    //food object
+    function food(name, category, price, photo){
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.photo = photo;
+    }
+    //adding a new food
+    function addNewFood(name, category, price, photo){
+        let foodItem = new food(name, category, price, photo);
+        foods.push(foodItem);
+        saveFoods();
+    }
+    //Remove food
+    function removeFood(index){
+        foods.splice(index, 1);
+    }
+
+    //addNewFood('qwe','qwe','12','https://d2e147lbltb8cj.cloudfront.net/r/i/77344844-b13a-453d-a64d-409b139e942a_10x_299_195_75');
+    
+    /*saving the data to localstorage
     let foodsArr = JSON.stringify(foods);
     let foodsSet = localStorage.setItem("savedFoods", foodsArr);
     foodsArr = localStorage.getItem("savedFoods");
-    let foodsObj = JSON.parse(foodsArr);
+    let foodsObj = JSON.parse(foodsArr);*/
+
+    //save data to local storage
+    function saveFoods(){
+        let str = JSON.stringify(foods);
+        localStorage.setItem("savedFoods", str);
+    }
+    //get data to local storage
+    function getFoods(){
+        let str = localStorage.getItem("savedFoods");
+        savedFoods = JSON.parse(str);
+        debugger;
+    }
+    getFoods();
 
     //price range for food
     $('#flat-slider').slider({
@@ -85,27 +120,26 @@ $(document).ready(function(){
         range: true,
         values: [5, 20],
         change: function(e, ui){
-            getFoods(ui.values[0], ui.values[1]);
+            foodPriceRange(ui.values[0], ui.values[1]);
         }
     });
 
     let current = $('#flat-slider').slider("option", "values");
 
-    getFoods(current[0], current[1]);
+    foodPriceRange(current[0], current[1]);
 
-    function getFoods(min, max){
+    function foodPriceRange(min, max){
         $('#rangeMin').text(`$${min}`);
         $('#rangeMax').text(`$${max}`);
-
         //if condition pass the card will display in foodResult
         let foodResult ='';
-        let checkFoodPrice = foodsObj.map((food)=>{
+        foods.map(food => {
             if(food.price >= min && food.price <= max){
                 //creating the card
                 foodResult += `
-                <div class="col-md-3">
+                <div class="col-sm-3">
                    <div class="card">
-                       <img class="card-img-top" src="${food.photo}">
+                       <img class="card-img-top" src="${food.photo}" alt="broken photo">
                        <div class="card-body">
                            <h5 class="card-title text-center">${food.name}</h5>
                            <h6 class="text-center">${food.category}</h6>
@@ -119,5 +153,38 @@ $(document).ready(function(){
         
         $("#food-card").html(foodResult);
     }
+
+    //Table of food in food.html
+    function listFood(){
+        let listFood = '';
+        let row = 1;
+        foods.map(food =>{
+                //creating the row
+                listFood += `                  
+                        <tr>
+                        <th scope="row">${row++}</th>
+                        <td>${food.name}</td>
+                        <td>${food.category}</td>
+                        <td>$${food.price}</td>
+                        <td>${food.photo}</td>
+                        <td><button id="delete-btn"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+               `;
+        }).join('');
+        foodPriceRange(current[0], current[1]);
+        $(".food-list-view").html(listFood);
+    }
+    
+    $("#add-food-form").submit(e => {
+        e.preventDefault();
+
+        let name = $("#input-name").val();
+        let category = $("#input-category").val();
+        let price = $("#input-price").val();
+        let photo = $("#input-photo").val();
+        addNewFood(name, category, price, photo);
+        listFood();
+
+    });
 });
 

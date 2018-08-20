@@ -159,9 +159,75 @@
             <!--The card is generated in JS-->
         </div>
         <hr>
+    </div>
 
+    <div class="container">
         <footer>
             <p>&copy; Bogdan Cadar - 2018</p>
+            
+            <!--Modal condainer-->
+            <div class="container">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal">
+                Add food
+            </button>
+    
+            <!-- Modal for adding food-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add food:</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="col-sm">
+                                    <form id="add-food-form">
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input id="input-name" class="form-control" type="text" placeholder="Burger" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Category:</label>
+                                            <input id="input-category" class="form-control" type="text" placeholder="Main Course" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Price:</label>
+                                            <input id="input-price" class="form-control" type="number" placeholder="10" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Photo Link:</label>
+                                            <input id="input-photo" class="form-control" type="text" placeholder="https://photo.com/9e8f...">
+                                        </div>
+                                        <button id="button-submit" type="submit" class="btn btn-warning">Add</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nr</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Photo</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="food-list-view">
+                                    <!--table content-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </footer>
     </div>
     <!-- /container -->
