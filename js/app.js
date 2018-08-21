@@ -81,11 +81,24 @@ function food(id, name, category, price, photo){
     this.price = price;
     this.photo = photo;
 }
+
+//delete data to local storage
+function deleteFood(id){
+    for(let i = 0; i < foods.length; i++){
+        if(foods[i].id == id){
+            foods.splice(i, 1);
+        }
+    }
+    saveFoods();
+    init();
+}
+
 //adding a new food
 function addNewFood(id, name, category, price, photo){
     let foodItem = new food(id, name, category, price, photo);
     foods.push(foodItem);
     saveFoods();
+    init();
 }
 //save data to local storage
 function saveFoods(){
@@ -101,37 +114,24 @@ function getFoods(){
     }
 }
 getFoods();
-//delete data to local storage
-function deleteFood(id){
-    for(let i = 0; i < foods.length; i++){
-        if(foods[i].id == id){
-            foods.splice(i, 1);
-        }
-    }
-    saveFoods();
-}
-$(document).ready(function(){
-//price range for food
-    $('#flat-slider').slider({
-        max: 30,
-        range: true,
-        values: [5, 20],
-        change: function(e, ui){
-            foodPriceRange(ui.values[0], ui.values[1]);
-        }
+
+function deleteButtonHandler() {
+    $(".delete-btn").bind("click", e => {
+        e.preventDefault();
+        deleteFood(e.target.parentElement.dataset.foodId);
     });
+}
 
-let current = $('#flat-slider').slider("option", "values");
-
-foodPriceRange(current[0], current[1]);
-
-function foodPriceRange(min, max){
+function foodPriceRange(){
+    let current = $('#flat-slider').slider("option", "values");
+    let min = current[0];
+    let max = current[1];
     $('#rangeMin').text(`$${min}`);
     $('#rangeMax').text(`$${max}`);
     //if condition pass the card will display in foodResult
     let foodResult ='';
-    foods.map(food => {
-        if(food.price >= min && food.price <= max){
+    let filteredFoods = foods.filter(food => food.price >= min && food.price <= max);
+    filteredFoods.map(food => {
             //creating the card
             foodResult += `
             <div class="col-sm-3">
@@ -145,7 +145,6 @@ function foodPriceRange(min, max){
             </div>
         </div>
         `;
-        }
     }).join('');
     
     $("#food-card").html(foodResult);
@@ -153,12 +152,11 @@ function foodPriceRange(min, max){
 //Table of food in food.html
 function listFood(){
     let listFood = '';
-    let row = 1;
     foods.map(food =>{
             //creating the row
             listFood += `                  
                     <tr>
-                    <th scope="row">${row++}</th>
+                    <th scope="row">${food.id}</th>
                     <td>${food.name}</td>
                     <td>${food.category}</td>
                     <td>$${food.price}</td>
@@ -167,31 +165,44 @@ function listFood(){
                     </tr>
         `;
     }).join('');
-    foodPriceRange(current[0], current[1]);
     $(".food-list-view").html(listFood);
 }
-listFood();
 
-$("#add-food-form").submit(e => {
-    e.preventDefault();
-
-    let id = $("#input-id").val();
-    let name = $("#input-name").val();
-    let category = $("#input-category").val();
-    let price = $("#input-price").val();
-    let photo = $("#input-photo").val();
-    addNewFood(id, name, category, price, photo);
-    listFood();
-
-});
-    $(".delete-btn").bind("click", e => {
-        e.preventDefault();
-        deleteFood(e.target.parentElement.dataset.foodId);
-        listFood();
+function initalizeSlider() {
+    //price range for food
+    $('#flat-slider').slider({
+        max: 30,
+        range: true,
+        values: [2, 28],
+        change: function(_, _){
+            foodPriceRange();
+        }
     });
+    foodPriceRange();
+}
+function init() {
+    listFood();
+    deleteButtonHandler();
+    foodPriceRange();
+}
+
+$(document).ready(function() {
+    initalizeSlider();
+    init();
+    
+    $("#add-food-form").submit(e => {
+        e.preventDefault();
+        let id = $("#input-id").val();
+        let name = $("#input-name").val();
+        let category = $("#input-category").val();
+        let price = $("#input-price").val();
+        let photo = $("#input-photo").val();
+        addNewFood(id, name, category, price, photo);
+    });
+
     $("#mock-btn").bind("click", () => { 
         foods = MOCKED_FOOD;
-        listFood();
+        foodPriceRange();
     });
 });
 
