@@ -171,13 +171,14 @@
             <button id="mock-btn" type="button" class="btn btn-warning btn-sm">
                     Mocked Food
             </button>
-            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal">
+
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">
                 Add food
             </button>
     
             <!-- Modal for adding food-->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Add food:</h5>
@@ -190,8 +191,8 @@
                                 <div class="col-sm">
                                     <form id="add-food-form">
                                             <div class="form-group">
-                                                    <label>Index:</label>
-                                                    <input id="input-index" class="form-control" type="number" placeholder="0" required>
+                                                    <label>ID:</label>
+                                                    <input id="input-id" class="form-control" type="number" placeholder="0" required>
                                                 </div>
                                         <div class="form-group">
                                             <label>Name:</label>
@@ -216,21 +217,23 @@
                         </div>
                         <br>
                         <div class="container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nr</th>
-                                        <th scope="col">Index</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Photo</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="food-list-view">
-                                    <!--table content-->
-                                </tbody>
-                            </table>
+                            <div class="modal-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nr</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Photo</th>
+                                            <th scope="col"><i class="fas fa-times"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="food-list-view">
+                                        <!--table content-->
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -42,7 +42,7 @@ h6 {
   font-weight: 100;
 }
 
-.fas, .fa-angle-down {
+.fa-angle-down {
   color: rgb(255, 145, 0);
   font-size: 14 px;
 }
@@ -111,4 +111,8 @@ h6 {
   background: rgb(255, 145, 0);
   color: #fff;
   
+}
+
+.modal-body {
+  overflow-x: auto;
 }
